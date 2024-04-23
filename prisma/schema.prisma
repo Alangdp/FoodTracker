@@ -1,0 +1,40 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url= env("DATABASE_URL")
+}
+
+
+model Admin {
+  id            String      @id @default(uuid()) @unique
+  name          String
+  email         String      @unique
+  password      String
+  permission_add           Boolean     @default(false)
+  permission_edit          Boolean     @default(false)
+  permission_delete        Boolean     @default(false)
+  permission_update        Boolean     @default(false)
+  permission_updateStatus  Boolean     @default(false)
+  permission_deleteOrder   Boolean     @default(false)
+  permission_add_new_worker Boolean @default(false)
+  createdAt     DateTime    @default(now())
+
+  company Company @relation(fields: [companyId], references: [id])
+  companyId String
+
+  @@map("admins")
+}
+
+model Company {
+  id  String  @id @default(uuid()) @unique
+  name  String  
+  users Admin[]
+  email String
+  contact String
+  password String
+  
+  @@map("companies")
+}

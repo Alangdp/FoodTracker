@@ -10,7 +10,7 @@ O projeto FoodTracker é uma aplicação web em fase inicial de desenvolvimento.
 - Linguagem de Programação: Typescript (Back-end) | HTML e Tailwind CSS (Frontend)
 - Framework: Express
 - Banco de Dados: Prisma (MySQL)
-- Ferramentas Adicionais: []
+- Ferramentas Adicionais: [ ZOD (validação de tipos)]
 
 ## Estrutura do Projeto (Planejada)
 

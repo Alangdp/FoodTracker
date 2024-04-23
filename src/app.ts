@@ -1,5 +1,6 @@
 import express, { Application } from "express";
 
+import companyRoutes from "./routes/company.route";
 
 class App {
   public app: Application;
@@ -11,7 +12,7 @@ class App {
   }
 
   routes() {
-
+    this.app.use("/", companyRoutes);
   }
 
   settings() {
