@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { User } from "../models/User.model";
 
 const phoneRegex = /^1\d\d(\d\d)?$|^0800 ?\d{3} ?\d{4}$|^(\(0?([1-9a-zA-Z][0-9a-zA-Z])?[1-9]\d\) ?|0?([1-9a-zA-Z][0-9a-zA-Z])?[1-9]\d[ .-]?)?(9|9[ .-])?[2-9]\d{3}[ .-]?\d{4}$/gm;
 
@@ -8,6 +9,8 @@ export type CompanyProps = {
   email: string
   contact: string
   password: string
+  users?: User[]
+  createdAt?: Date
 }
 
 export const CompanyFilterSchema = z.object({

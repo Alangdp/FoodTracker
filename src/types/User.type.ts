@@ -13,6 +13,7 @@ export type UserProps = {
   permission_deleteOrder: boolean,    
   permission_add_new_worker: boolean,   
   companyId: string,
+  createdAt?: Date | undefined;
 }
 
 export const UserFilterSchema = z.object({
@@ -25,7 +26,7 @@ export const UserFilterSchema = z.object({
     .toLowerCase(),
   password: z.string().trim().min(8, "Password must be a min 8 length"),
   companyId: z.string(),
-  
+
   permission_add: z.boolean().optional(),       
   permission_edit: z.boolean().optional(),           
   permission_delete: z.boolean().optional(),         
