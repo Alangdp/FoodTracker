@@ -1,6 +1,8 @@
 import express, { Application } from "express";
 
-import companyRoutes from "./routes/company.route";
+import companyRoutes from "./routes/company.router";
+import userRoutes from "./routes/user.router";
+
 
 class App {
   public app: Application;
@@ -12,7 +14,8 @@ class App {
   }
 
   routes() {
-    this.app.use("/", companyRoutes);
+    this.app.use("/company", companyRoutes);
+    this.app.use("/user", userRoutes);
   }
 
   settings() {

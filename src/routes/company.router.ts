@@ -6,9 +6,9 @@ const router = Router();
 
 
 // Rest Routes
-router.get("/company", index);
-router.post("/company", store);
-router.put("/company/:companyId", put);
-router.delete("/company/:companyId", destroy);
+router.get("/", index);
+router.post("/", store);
+router.put("/:companyId", put);
+router.delete("/:companyId", destroy);
 
 export default router;

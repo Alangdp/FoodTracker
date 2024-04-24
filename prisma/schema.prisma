@@ -20,11 +20,11 @@ model Admin {
   permission_updateStatus  Boolean     @default(false)
   permission_deleteOrder   Boolean     @default(false)
   permission_add_new_worker Boolean @default(false)
-  createdAt     DateTime    @default(now())
 
   company Company @relation(fields: [companyId], references: [id])
   companyId String
 
+  createdAt     DateTime    @default(now())
   @@map("admins")
 }
 
@@ -35,6 +35,7 @@ model Company {
   email String
   contact String
   password String
+  createdAt     DateTime    @default(now())
   
   @@map("companies")
 }
