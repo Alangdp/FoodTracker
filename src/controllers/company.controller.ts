@@ -2,7 +2,6 @@ import { RequestHandler } from 'express';
 import { errorResponse, response } from '../utils/responses';
 import {
   CompanyFilterSchema,
-  CompanyFilterSchemaPartial,
   CompanyProps,
 } from '../types/Company.type';
 import { PrismaClient } from '@prisma/client';
@@ -38,7 +37,7 @@ export const store: RequestHandler = async (req, res) => {
 export const put: RequestHandler = async (req, res) => {
   try {
     const companyId = req.params.companyId;
-    const companyProps = CompanyFilterSchemaPartial.parse({ ...req.body });
+    const companyProps = CompanyFilterSchema.optional().parse({ ...req.body });
     const company = await prisma.company.update({
       where: { id: companyId },
       data: { ...companyProps },

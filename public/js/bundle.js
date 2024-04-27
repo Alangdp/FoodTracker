@@ -16,7 +16,7 @@
   \**********************************/
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
-eval("\nvar __importDefault = (this && this.__importDefault) || function (mod) {\n    return (mod && mod.__esModule) ? mod : { \"default\": mod };\n};\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\n__webpack_require__(/*! ./Toast */ \"./src/frontend/ts/Toast.ts\");\n__webpack_require__(/*! ./FormRegister */ \"./src/frontend/ts/FormRegister.ts\");\n__webpack_require__(/*! ./FormLogin */ \"./src/frontend/ts/FormLogin.ts\");\nconst Storage_1 = __importDefault(__webpack_require__(/*! ./Storage */ \"./src/frontend/ts/Storage.ts\"));\nconst TokenManager = new Storage_1.default(\"token\");\n\n\n//# sourceURL=webpack://foodtracker/./src/frontend/ts/Entry.ts?");
+eval("\nvar __importDefault = (this && this.__importDefault) || function (mod) {\n    return (mod && mod.__esModule) ? mod : { \"default\": mod };\n};\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\n__webpack_require__(/*! ./Toast */ \"./src/frontend/ts/Toast.ts\");\n__webpack_require__(/*! ./FormRegister */ \"./src/frontend/ts/FormRegister.ts\");\n__webpack_require__(/*! ./FormLogin */ \"./src/frontend/ts/FormLogin.ts\");\nconst Storage_1 = __importDefault(__webpack_require__(/*! ./Storage */ \"./src/frontend/ts/Storage.ts\"));\nconst tokenManager = new Storage_1.default(\"token\");\nconst userToken = tokenManager.readToken();\n\n\n//# sourceURL=webpack://foodtracker/./src/frontend/ts/Entry.ts?");
 
 /***/ }),
 

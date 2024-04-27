@@ -3,4 +3,5 @@ import "./FormRegister";
 import "./FormLogin";
 import LocalManager from "./Storage";
 
-const TokenManager = new LocalManager("token");
+const tokenManager = new LocalManager("token");
+const userToken = tokenManager.readToken();
