@@ -25,7 +25,7 @@ model Admin {
   companyId String
 
   createdAt     DateTime    @default(now())
-  @@map("admins")
+  @@map("users")
 }
 
 model Company {
@@ -38,4 +38,22 @@ model Company {
   createdAt     DateTime    @default(now())
   
   @@map("companies")
+}
+
+model Product {
+  id              String      @id @default(uuid()) @unique
+  category        String
+  title           String
+  description     String?
+  images          Image[]     // Relação com o modelo Image
+  value           Decimal
+  discountPercent Decimal
+}
+
+model Image {
+  id              String      @id @default(uuid()) @unique
+  imageUrl        String
+  product         Product[]    
+  productId       String     
+  @@map(name: "images")     
 }
