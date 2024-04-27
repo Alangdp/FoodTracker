@@ -5,7 +5,7 @@ import { User } from "./User.model";
 
 
 export default class Company implements CompanyProps {
-  id: string;
+  id?: string;
   name: string;
   email: string;
   contact: string; 

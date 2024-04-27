@@ -8,6 +8,7 @@ import {
 import { PrismaClient } from '@prisma/client';
 import bcrypt from "bcrypt";
 import Company from '../models/Company.model';
+import { createToken } from '../middleware/tokenMiddleware';
 
 const prisma = new PrismaClient();
 
@@ -67,8 +68,10 @@ export const login: RequestHandler = async (req, res) => {
     const companyProps: CompanyProps = CompanyFilterSchema.parse({ ...companyDB, id: companyDB.id});
     const company = new Company({...companyProps});
     if(!company.login(password)) throw new Error("Invalid Email or Password");
-    return response(res, { status: 200, data: company });
+    const token = createToken(company.id!);
+    return response(res, { status: 200, data: token });
   } catch (error) {
+    console.log(error);
     return errorResponse(res, error);
   }
 };

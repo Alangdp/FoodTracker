@@ -18,20 +18,20 @@
         Lorem Ipsum
       </div> 
       <div class="flex flex-col justify-center items-center col-span-2">
-        <form id="form-register" class="w-full max-w-sm bg-white p-8 rounded-[20px] shadow-lg relative z-10" style="box-shadow: 0px 24px 48px 0 rgba(0,0,0,0.16);" method="POST" action="/company">
+        <form id="form-login" class="w-full max-w-sm bg-white p-8 rounded-[20px] shadow-lg relative z-10" style="box-shadow: 0px 24px 48px 0 rgba(0,0,0,0.16);" method="POST" action="/company">
           <h2 class="text-2xl font-bold mb-4">Login</h2>
           <!-- ? CSRF - Para implementar -->
           <!-- <input type="hidden"> -->
           <div class="mb-4">
             <label class="block text-gray-700 text-sm font-bold mb-2" for="name">Email:</label>
-            <input name="name" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="name" type="text" placeholder="Nome">
+            <input name="email" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="email" type="text" placeholder="Nome">
           </div>
           <div class="mb-4">
             <label class="block text-gray-700 text-sm font-bold mb-2" for="email">Senha:</label>
-            <input name="email" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="email" type="email" placeholder="E-mail">
+            <input name="password" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="password" type="email" placeholder="E-mail">
           </div>
           <div class="flex items-center justify-center mb-8"> <!-- Adicionando margem inferior -->
-            <button id="submit-btn" class="bg-[#39DB4A] hover:bg-[#3dc053] duration-300 w-2/3 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">Venha Fazer Parte</button>
+            <button id="submit-btn-login" class="bg-[#39DB4A] hover:bg-[#3dc053] duration-300 w-2/3 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">Venha Fazer Parte</button>
           </div>
         </form>
         
@@ -51,6 +51,4 @@
 </body>
 </html>
 
-<script src="/public/js/toast.js"></script>
-<script src="/public/js/form-register.js"></script>
-<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="/public/js/bundle.js"></script>

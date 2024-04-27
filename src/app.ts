@@ -18,8 +18,8 @@ class App {
   }
 
   routes() {
-    this.app.use("/company", companyRoutes);
-    this.app.use("/user", userRoutes);
+    this.app.use("v1/company", companyRoutes);
+    this.app.use("v1/user", userRoutes);
     this.app.use("/", pagesRoutes);
   }
 
