@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login</title>
+  <link rel="stylesheet" href="/public/styles/output.css" />
+  <link rel="stylesheet" href="/public/styles/toast.css">
+  
+</head>
+<body class="overflow-x-hidden">
+  <%- include('./includes/navbar.ejs') %>
+  <div class="relative w-screen h-screen flex justify-center items-center">
+    <div class="absolute inset-0 bg-cover bg-center filter blur-sm" style="background-image: url('/public/images/restaurant.jpg')"></div>
+    <div class="absolute inset-0 border-[4px] border-black blur-sm"></div>
+    <div class="z-10 w-full h-full grid grid-cols-3 gap-4">
+      <div class="flex items-center justify-center bg-gradient-to-r from-blue-400 to-blue-700 text-white text-center font-bold text-4xl">
+        Lorem Ipsum
+      </div> 
+      <div class="flex flex-col justify-center items-center col-span-2">
+        <form id="form-register" class="w-full max-w-sm bg-white p-8 rounded-[20px] shadow-lg relative z-10" style="box-shadow: 0px 24px 48px 0 rgba(0,0,0,0.16);" method="POST" action="/company">
+          <h2 class="text-2xl font-bold mb-4">Login</h2>
+          <!-- ? CSRF - Para implementar -->
+          <!-- <input type="hidden"> -->
+          <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="name">Email:</label>
+            <input name="name" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="name" type="text" placeholder="Nome">
+          </div>
+          <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="email">Senha:</label>
+            <input name="email" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="email" type="email" placeholder="E-mail">
+          </div>
+          <div class="flex items-center justify-center mb-8"> <!-- Adicionando margem inferior -->
+            <button id="submit-btn" class="bg-[#39DB4A] hover:bg-[#3dc053] duration-300 w-2/3 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">Venha Fazer Parte</button>
+          </div>
+        </form>
+        
+        <!-- Adicionando o círculo abaixo do formulário -->
+        <div class="absolute bottom-0 left-3/2 transform -translate-x-1/2 mb-16"> <!-- Adicionando margem inferior -->
+          <div class="rounded-full w-[400px] h-[400px] bg-[#39DB4A]"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="w-fit h-fit bg-blue-500 shadow-lg grid-cols-1 fixed top-0 right-0 mr-4 mt-4 p-4 rounded gap-2 hidden">
+    <div class="card p-2 bg-white overflow-hidden text-ellipsis whitespace-nowrap rounded">
+    </div>
+  </div>
+
+</body>
+</html>
+
+<script src="/public/js/toast.js"></script>
+<script src="/public/js/form-register.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>

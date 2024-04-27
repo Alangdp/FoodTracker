@@ -32,8 +32,8 @@ model Company {
   id  String  @id @default(uuid()) @unique
   name  String  
   users Admin[]
-  email String
-  contact String
+  email String @unique
+  contact String @unique
   password String
   createdAt     DateTime    @default(now())
   

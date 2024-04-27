@@ -1,0 +1,76 @@
+.Toast {
+  border: 1px solid;
+  /* width: 300px; */
+  height: flex;
+  border-radius: 2px;
+  position: fixed;
+  margin-top: 50px;
+  right: 50px;
+  display: flex;
+  text-align: left;
+}
+
+.message {
+  font-size: 14px;
+  font-weight: regular;
+  line-height: 20px;
+  margin-left: 8px;
+  margin-right: 16px;
+}
+
+.icon {
+  size: 12px;
+  margin-top: 14px;
+  margin-left: 12px;
+}
+
+.Success {
+  border: #008760;
+}
+
+.Success .Toast {
+  background-color: #e0f7ef;
+}
+
+.Error {
+  color: #d32f4c;
+}
+
+.Error .Toast {
+  background-color: #ffecec;
+}
+
+.Notify {
+  color: #008294;
+}
+
+.Notify .Toast {
+  background-color: #e7f9fb;
+}
+
+/* CSSTransition 
+/* fires as soon as the list enters the DOM */
+.toast-transition-enter,
+.toast-transition-appear {
+  transition: transform 0.5s linear;
+  opacity: 0;
+}
+
+/* add the transition here */
+.toast-transition-enter-active,
+.toast-transition-appear-active {
+  opacity: 1;
+  max-width: 300px;
+  transition: all 700ms;
+}
+
+/* fires as soon as this.state.isActive is false */
+.toast-transition-exit {
+  max-width: 300px;
+}
+
+/* fires as the element leaves the DOM */
+.toast-transition-exit-active {
+  opacity: 0;
+  transition: all 400ms;
+}

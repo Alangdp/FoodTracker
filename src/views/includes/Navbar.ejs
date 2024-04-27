@@ -1,24 +1,31 @@
-<body>
-  <div class="w-full h-[60px] bg-[#FFD15F] flex items-center justify-between p-8">
-    <h2 class="text-black text-[32px] font-semibold">Dashboard</h2>
-    <!-- <div
-      class="search w-1/4 p-2 bg-[#D9D9D9] rounded-xl flex items-center justify-center gap-2 text-black"
-    >
-      <img src="/public/svg/search.svg" alt="Search Icon" />
-      <input
-        class="border-0 bg-transparent outline-none placeholder-black placeholder-opacity-60 w-full"
-        type="text"
-        placeholder="Procurar por funções"
-      />
-    </div> -->
-    <div class="profile flex items-center justify-center gap-2">
-      <div
-        class="profile-image rounded-full bg-[#FFB703] w-11 h-11 flex items-center justify-center"
-      >
-        <img src="/public/svg/user.svg" alt="User icon" />
-      </div>
-      <p>Profile Name</p>
-      <img src="/public/svg/down-v.svg" alt="Down icon" />
+
+<div class="w-full h-fit p-4 grid grid-cols-5 z-10">
+  <img src="/public/svg/logo.svg" alt="Logo">
+  <div class="col-span-2 flex items-center justify-around">
+    <a href="#" class="hover:opacity-60 duration-300 text-lg font-medium">Home</a>
+    <div class="flex gap-2 items-center justify-center">
+      <a href="#" class="hover:opacity-60 duration-300 text-lg font-medium">Menu</a>
+      <img src="/public/svg/carret.svg" alt="">
     </div>
+
+    <div class="flex gap-2 items-center justify-center">
+      <a href="#" class="hover:opacity-60 duration-300 text-lg font-medium">Serviços</a>
+      <img src="/public/svg/carret.svg" alt="">
+    </div>
+    <a href="#" class="hover:opacity-60 duration-300 text-lg font-medium">Ofertas</a>
+  </div> 
+  <div class="flex items-center justify-around col-span-2">
+    <div class="relative">
+      <div class="absolute -top-2 -right-4 w-8 h-8 rounded-full bg-[#39DB4A] text-white flex items-center justify-center">
+        1
+      </div>
+      <img src="/public/svg/bag.svg" class="h-auto w-8" alt="Bag Icon">
+    </div>
+    <a href="/contact">
+      <div class="contact flex items-center px-4 py-2 bg-[#39DB4A] text-white rounded-3xl gap-2 hover:bg-[#3dc053] duration-300">
+        <img src="/public/svg/phone.svg" alt="Phone Icon">
+        <h3 class="font-medium text-lg">Contato</h3>
+      </div>
+    </a>
   </div>
-</body>
+</div> 
