@@ -5,8 +5,6 @@ function validateLoginForm(): boolean {
   const email = (document.getElementById('email') as HTMLInputElement).value;
   const password = (document.getElementById('password') as HTMLInputElement).value;
 
-  console.log(email, "EMAIL");
-
   const emailRegex: RegExp = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   const passwordRegex: RegExp = /^.{8,}$/;
 

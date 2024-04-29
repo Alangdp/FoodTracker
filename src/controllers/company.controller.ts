@@ -70,7 +70,6 @@ export const login: RequestHandler = async (req, res) => {
     const token = createToken(company.id!);
     return response(res, { status: 200, data: token });
   } catch (error) {
-    console.log(error);
     return errorResponse(res, error);
   }
 };

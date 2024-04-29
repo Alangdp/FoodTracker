@@ -17,7 +17,9 @@ export function errorResponse(res: Response, error: any) {
   if(error instanceof PrismaClientKnownRequestError) {
     const requestError = error;
 
-    if(requestError.meta?.cause === "Record to delete does not exist") {
+    const errorMessage: string = requestError.meta?.cause as any;
+
+    if(errorMessage.trim() === "Record to delete does not exist.") {
       return response(res, {
         errors: [addError("Invalid Id", null)],
         status: 400
@@ -47,7 +49,6 @@ export function errorResponse(res: Response, error: any) {
   if(error instanceof AxiosError) {
     if(error.response) {
       const responseError: ResponseProps<any> = error.response.data;
-      console.log(responseError);
       return response(res, {
         data: {},
         status: responseError.status,

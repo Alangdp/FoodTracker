@@ -1,8 +1,9 @@
 import { z } from "zod";
 
-export type UserPropss = z.infer<typeof UserFilterSchema>;
+export type UserProps = z.infer<typeof UserFilterSchema>;
 
 export const UserFilterSchema = z.object({
+  id: z.string().optional(),
   name: z.string().min(3, "Name must be a min 3 length"),
   email: z
     .string()

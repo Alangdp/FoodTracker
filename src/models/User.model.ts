@@ -2,9 +2,8 @@ import bcrypt from "bcrypt";
 
 import { UserProps } from "../types/User.type";
 
-
 export class User implements UserProps {
-  id: string;
+  id?: string;
   name: string;
   email: string;
   password: string;
@@ -23,13 +22,13 @@ export class User implements UserProps {
     this.name =  props.name;
     this.email =  props.email;
     this.password =  props.password;
-    this.permission_add =  props.permission_add;
-    this.permission_edit =  props.permission_edit;
-    this.permission_delete =  props.permission_delete;
-    this.permission_update =  props.permission_update;
-    this.permission_updateStatus =  props.permission_updateStatus;
-    this.permission_deleteOrder =  props.permission_delete;
-    this.permission_add_new_worker =  props.permission_add_new_worker;
+    this.permission_add =  props.permission_add || false;
+    this.permission_edit =  props.permission_edit || false;
+    this.permission_delete =  props.permission_delete || false;
+    this.permission_update =  props.permission_update || false;
+    this.permission_updateStatus =  props.permission_updateStatus || false;
+    this.permission_deleteOrder =  props.permission_delete || false;
+    this.permission_add_new_worker =  props.permission_add_new_worker || false;
     this.companyId =  props.companyId;
     this.createdAt =  props.createdAt;
   }

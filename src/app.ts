@@ -4,6 +4,7 @@ import express, { Application } from "express";
 import companyRoutes from "./routes/company.router";
 import userRoutes from "./routes/user.router";
 import pagesRoutes from "./routes/pages.router";
+import productRoutes from "./routes/product.router";
 
 
 const __dirname = path.resolve();
@@ -18,8 +19,9 @@ class App {
   }
 
   routes() {
-    this.app.use("v1/company", companyRoutes);
-    this.app.use("v1/user", userRoutes);
+    this.app.use("/v1/company", companyRoutes);
+    this.app.use("/v1/user", userRoutes);
+    this.app.use("/v1/product", productRoutes);
     this.app.use("/", pagesRoutes);
   }
 
