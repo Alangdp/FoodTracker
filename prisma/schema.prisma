@@ -48,12 +48,14 @@ model Product {
   images          Image[] 
   value           Decimal
   discountPercent Decimal
+  status Boolean @default(true)
 }
 
 model Image {
   id              String      @id @default(uuid()) @unique
   imageUrl        String
   product         Product[]    
-  productId       String     
+  productId       String   
+  status Boolean @default(true)
   @@map(name: "images")     
 }

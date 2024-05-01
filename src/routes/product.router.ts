@@ -6,7 +6,7 @@ import { uploadFileImage } from '../middleware/imageMiddleware';
 const router = Router();
 
 // Rotas REST
-router.post('/', store);
+router.post('/', uploadFileImage, store);
 router.delete('/:productId', pop);
 router.put('/', uploadFileImage, put);
 

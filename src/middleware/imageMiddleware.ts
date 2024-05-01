@@ -4,7 +4,7 @@ import path from "path";
 import { errorResponse } from "../utils/responses";
 
 const storage = multer.diskStorage({
-  destination: './temp/images/products',
+  destination: './temp/images/',
   filename: (req, file, cb) => {
     if(!req.body.tempFiles) req.body.tempFiles = [];
     const allowedMimeTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/jpeg'];

@@ -1,78 +1,56 @@
 import { PrismaClient } from "@prisma/client";
 import { ProductProps, ProductFilterSchema } from "../types/Product.type";
-import { deleteByProductId } from "./Images.model";
+import { deleteImagesById, registerImages } from "./Images.model";
+import { randomUUID } from "crypto";
 
 const prisma = new PrismaClient();
 
 async function createProduct(data: ProductProps) {
   ProductFilterSchema.parse(data);
+  const uuid = randomUUID();
   const { images, ...productData } = data;
+  const imagesProcessed = await registerImages(images.map( image => image.imageUrl), uuid);
   const product = await prisma.product.create({
     data: {
-      ...productData,
+      id: uuid,
+      ...productData
     },
   });
-
-  const imageCreatePromises = images.map(item => {
-    return prisma.image.create({
-      data: {
-        imageUrl: item.imageUrl,
-        productId: product.id,
-      },
-    });
-  });
-
-  const processPromisses = await Promise.all(imageCreatePromises);
-
   return ({
     ...product,
-    images: processPromisses
+    images: imagesProcessed
   });
 }
 
 
-async function deleteProduct(productId: string) {
+async function deleteProduct(id: string) {
   const product = await prisma.product.delete({
-    where: {id: productId}
+    where: {id}
   });
-  
-  const images = await prisma.image.deleteMany({
-    where: {productId}
-  });
-  
-  return ({
-    ...product,
-    images: images
-  });
+  await deleteImagesById(id);
+  return (product);
 }
 
 async function updateProduct(data: ProductProps) {
   ProductFilterSchema.parse(data);
   if(!data.id) throw new Error("Invalid Id");
-  const { images, ...productData } = data;
-  const product = await prisma.product.update({
-    where: {id: data.id},
-    data: {
-      ...productData,
-    },
-  });
-
-  await deleteByProductId(data.id);
-  const imageCreatePromises = images.map(item => {
-    return prisma.image.create({
-      data: {
-        imageUrl: item.imageUrl,
-        productId: product.id,
-      },
-    });
-  });
-
-  const processPromisses = await Promise.all(imageCreatePromises);
+  const {id, images, ...productData} = data;
+  await deleteImagesById(id);
+  const comparation = (await registerImages(images.map(image => image.imageUrl), id)).comparation;
+  const imagesProcessed = comparation.map(item => ({
+    imageUrl: item.actualName,
+    productId: id,
+    status: true
+  }));
+  const product = await prisma.product.update({where: {id}, data: {
+    ...productData,
+  }}); 
 
   return ({
     ...product,
-    images: processPromisses
+    images: imagesProcessed
   });
 }
+
 
 export { createProduct, deleteProduct };

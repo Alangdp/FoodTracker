@@ -5,3 +5,5 @@ import LocalManager from "./Storage";
 
 const tokenManager = new LocalManager("token");
 const userToken = tokenManager.readToken();
+
+import "./Files";

@@ -6,7 +6,6 @@ import userRoutes from "./routes/user.router";
 import pagesRoutes from "./routes/pages.router";
 import productRoutes from "./routes/product.router";
 
-
 const __dirname = path.resolve();
 
 class App {
