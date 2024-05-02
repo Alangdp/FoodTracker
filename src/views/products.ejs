@@ -1,0 +1,77 @@
+
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sidebar</title>
+    <link rel="stylesheet" href="/public/styles/output.css">
+    <script src="https://kit.fontawesome.com/10a6f28d4d.js" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div class="p-7 bg-[#DDDDE2] flex flex-col gap-y-5 h-screen w-full ">
+    <div class=" h-fit w-full">
+      <%- include('./includes/navbar.ejs') %>
+    </div>
+    <div class="row h-full flex row-span-11 rounded-2xl w-full border border-gray-400 shadow-lg over overflow-hidden">
+      <%- include('./includes/sidebar.ejs') %>
+      <div class="w-full h-full rounded-r-2xl bg-[#F1F1F1] overflow-scroll flex-grow no-scrollbar">
+        <div class="w-full h-full flex flex-col items-center justify-center bg-[#F1F1F1]">
+          <div class="w-full h-full rounded bg-[#F1F1F1] px-16 py-2"> 
+            <div
+              class="p-4 flex gap-4 items-center hover:opacity-60 duration-300 cursor-pointer"
+            >
+              <i class="fa-solid fa-arrow-left"></i>
+              <h3 class="font-bold text-2xl">Produtos</h3>
+            </div>
+            <table class="w-full bg-white border rounded-lg shadow-md">
+              <thead class="bg-gray-800 text-white">
+                <tr>
+                  <th class="w-1/7 px-4 py-2">ID</th>
+                  <th class="w-1/7 px-4 py-2">Categoria</th>
+                  <th class="w-1/7 px-4 py-2">Título</th>
+                  <th class="w-1/7 px-4 py-2">Descrição</th>
+                  <th class="w-2/7 px-4 py-2">Imagens</th>
+                  <th class="w-1/7 px-4 py-2">Valor</th>
+                  <th class="w-1/7 px-4 py-2">Desconto (%)</th>
+                </tr>
+              </thead>
+              <tbody class="text-gray-700">
+                <% products.forEach(product => { %>
+                  <tr>
+                    <td class="border px-4 py-2"><%= product.id %></td>
+                    <td class="border px-4 py-2">Categoria A</td>
+                    <td class="border px-4 py-2">Produto A</td>
+                    <td class="border px-4 py-2">Descrição do Produto A</td>
+                    <td class="border px-4 py-2" rowspan="2">
+                      <div class="flex justify-between">
+                        <div class="w-1/2 px-2">
+                          <img src="imagem1.jpg" alt="Imagem 1" class="w-full">
+                        </div>
+                        <div class="w-1/2 px-2">
+                          <img src="imagem2.jpg" alt="Imagem 2" class="w-full">
+                        </div>
+                      </div>
+                      <div class="flex justify-between mt-2">
+                        <div class="w-1/2 px-2">
+                          <img src="imagem3.jpg" alt="Imagem 3" class="w-full">
+                        </div>
+                        <div class="w-1/2 px-2">
+                          <img src="imagem4.jpg" alt="Imagem 4" class="w-full">
+                        </div>
+                      </div>
+                    </td>
+                    <td class="border px-4 py-2">R$<%= product.value %> </td>
+                    <td class="border px-4 py-2"><%= product.discountPercent %>%</td>
+                  </tr>
+                <% }) %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

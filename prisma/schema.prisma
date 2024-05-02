@@ -32,6 +32,7 @@ model Company {
   id  String  @id @default(uuid()) @unique
   name  String  
   users Admin[]
+  products Product[]
   email String @unique
   contact String @unique
   password String
@@ -48,7 +49,10 @@ model Product {
   images          Image[] 
   value           Decimal
   discountPercent Decimal
+  
   status Boolean @default(true)
+  company Company? @relation(fields: [companyId], references: [id])
+  companyId String
 }
 
 model Image {

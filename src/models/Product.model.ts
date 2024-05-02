@@ -13,7 +13,7 @@ async function createProduct(data: ProductProps) {
   const product = await prisma.product.create({
     data: {
       id: uuid,
-      ...productData
+      ...productData,
     },
   });
   return ({
@@ -29,7 +29,7 @@ async function deleteProduct(id: string) {
   });
   await deleteImagesById(id);
   return (product);
-}
+};
 
 async function updateProduct(data: ProductProps) {
   ProductFilterSchema.parse(data);

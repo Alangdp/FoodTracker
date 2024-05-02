@@ -1,15 +1,3 @@
-/*
-  Warnings:
-
-  - You are about to drop the `admins` table. If the table is not empty, all the data it contains will be lost.
-
-*/
--- DropForeignKey
-ALTER TABLE `admins` DROP FOREIGN KEY `admins_companyId_fkey`;
-
--- DropTable
-DROP TABLE `admins`;
-
 -- CreateTable
 CREATE TABLE `users` (
     `id` VARCHAR(191) NOT NULL,
@@ -32,6 +20,21 @@ CREATE TABLE `users` (
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
+CREATE TABLE `companies` (
+    `id` VARCHAR(191) NOT NULL,
+    `name` VARCHAR(191) NOT NULL,
+    `email` VARCHAR(191) NOT NULL,
+    `contact` VARCHAR(191) NOT NULL,
+    `password` VARCHAR(191) NOT NULL,
+    `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
+
+    UNIQUE INDEX `companies_id_key`(`id`),
+    UNIQUE INDEX `companies_email_key`(`email`),
+    UNIQUE INDEX `companies_contact_key`(`contact`),
+    PRIMARY KEY (`id`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+-- CreateTable
 CREATE TABLE `Product` (
     `id` VARCHAR(191) NOT NULL,
     `category` VARCHAR(191) NOT NULL,
@@ -39,6 +42,8 @@ CREATE TABLE `Product` (
     `description` VARCHAR(191) NULL,
     `value` DECIMAL(65, 30) NOT NULL,
     `discountPercent` DECIMAL(65, 30) NOT NULL,
+    `status` BOOLEAN NOT NULL DEFAULT true,
+    `companyId` VARCHAR(191) NOT NULL,
 
     UNIQUE INDEX `Product_id_key`(`id`),
     PRIMARY KEY (`id`)
@@ -49,6 +54,7 @@ CREATE TABLE `images` (
     `id` VARCHAR(191) NOT NULL,
     `imageUrl` VARCHAR(191) NOT NULL,
     `productId` VARCHAR(191) NOT NULL,
+    `status` BOOLEAN NOT NULL DEFAULT true,
 
     UNIQUE INDEX `images_id_key`(`id`),
     PRIMARY KEY (`id`)
@@ -65,6 +71,9 @@ CREATE TABLE `_ImageToProduct` (
 
 -- AddForeignKey
 ALTER TABLE `users` ADD CONSTRAINT `users_companyId_fkey` FOREIGN KEY (`companyId`) REFERENCES `companies`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE `Product` ADD CONSTRAINT `Product_companyId_fkey` FOREIGN KEY (`companyId`) REFERENCES `companies`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE `_ImageToProduct` ADD CONSTRAINT `_ImageToProduct_A_fkey` FOREIGN KEY (`A`) REFERENCES `images`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;

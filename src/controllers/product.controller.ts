@@ -12,12 +12,14 @@ export const store: RequestHandler = async (req, res) => {
       description: req.body.description,
       value: Number(req.body.price),
       discountPercent: Number(req.body.discountPorcent),
-      images: req.body.tempFiles.map((item: string) => ({ imageUrl: item, productId: '' }))
+      images: req.body.tempFiles.map((item: string) => ({ imageUrl: item, productId: '' })),
+      companyId: "d6b8da1c-1bf3-4523-aa20-757d1cd1b04d"
     };
 
     const product = await createProduct(productData); 
     return response(res, { status: 200, data: product });
   } catch (error) {
+    console.log(error);
     if(req.body.tempFiles.length > 0) {
       req.body.tempFiles.forEach((name: string) => {
         deleteFile(name, true);

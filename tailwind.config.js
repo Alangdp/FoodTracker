@@ -12,11 +12,11 @@ module.exports = {
     function ({ addUtilities }) {
       const newUtilities = {
         '.back-image-blur': {
-          'webkitBackdropFilter': 'blur(5px)', // Aplicamos o filtro diretamente para compatibilidade com navegadores WebKit
+          'webkitBackdropFilter': 'blur(5px)',
           'backdropFilter': 'blur(5px)',
         }
       };
-      addUtilities(newUtilities, ['responsive', 'hover']); // Permitimos responsividade e pseudo-classes hover
+      addUtilities(newUtilities, ['responsive', 'hover']);
     }
   ],
 };

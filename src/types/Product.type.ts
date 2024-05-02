@@ -13,6 +13,7 @@ export const ProductFilterSchema = z.object({
   })),
   value: z.number(),
   discountPercent: z.number(),
+  companyId: z.string().optional()
 });
 
 export type ProductProps = z.infer<typeof ProductFilterSchema>;

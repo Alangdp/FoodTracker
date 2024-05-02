@@ -1,0 +1,131 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sidebar</title>
+    <link rel="stylesheet" href="/public/styles/output.css">
+    <script src="https://kit.fontawesome.com/10a6f28d4d.js" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div class="p-7 bg-[#DDDDE2] grid grid-row-10 gap-y-5 h-screen w-full ">
+    <div class="row-span-1 h-full w-full">
+      <%- include('./includes/navbar.ejs') %> 
+    </div>
+    <div class="row flex rounded-2xl w-full border border-gray-400 shadow-lg over row-span- overflow-hidden">
+      <%- include('./includes/sidebar.ejs') %>
+      <div class="w-full rounded-r-2xl bg-[#F1F1F1] overflow-scroll flex-grow no-scrollbar">
+        <div class="w-full h-full flex flex-col items-center justify-center bg-[#F1F1F1]">
+          <div class="w-1/2 h-full rounded bg-[#F1F1F1] px-16 py-2"> 
+            <div
+              class="p-4 flex gap-4 items-center hover:opacity-60 duration-300 cursor-pointer"
+            >
+              <i class="fa-solid fa-arrow-left"></i>
+              <h3 class="font-bold text-2xl">Adicionar Produto</h3>
+            </div>
+            <form action="/v1/product" method="POST"  class="w-full flex flex-col gap-4" enctype="multipart/form-data">
+              <div class="bg-white shadow-xl border border-gray-300 p-4 rounded-lg">
+                <div class="mb-4 w-full flex flex-col justify-center gap-2">
+                  <Label class="font-light text-lg">Título</Label>
+                  <input
+                    class="w-full p-1 rounded outline-none border border-[#F1F1F1]"
+                    name="title"
+                    type="text"
+                    placeholder="Pizza Grande"
+                  />
+                </div>
+                <div class="mb-4 w-full flex flex-col justify-center gap-2">
+                  <Label class="font-light text-lg">Descrição</Label>
+                  <textarea
+                    class="w-full h-40 rounded p-1 outline-none resize-none border border-[#F1F1F1]"
+                    name="description"
+                    type="text"
+                  ></textarea>
+                </div>
+              </div>
+    
+              <div class="bg-white shadow-xl border border-gray-300 p-4 rounded-lg">
+                <div class="mb-4 w-full flex flex-col justify-center gap-2">
+                  <label class="font-light text-lg">Mídia</label>
+                  <div
+                    id="image-preview"
+                    class="gap-4 grid-cols-3 w-full h-fit inline-grid items-center justify-center"
+                  ></div>
+                  <label
+                    for="dropzone-file"
+                    class="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600"
+                  >
+                    <div
+                      class="flex flex-col items-center justify-center pt-5 pb-6"
+                    >
+                      <svg
+                        class="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400"
+                        aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 20 16"
+                      >
+                        <path
+                          stroke="currentColor"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"
+                        />
+                      </svg>
+                      <p class="mb-2 text-sm text-gray-500 dark:text-gray-400">
+                        <span class="font-semibold">Fazer Upload de imagens</span>
+                      </p>
+                      <p class="text-xs text-gray-500 dark:text-gray-400">
+                        PNG, JPG
+                      </p>
+                    </div>
+                    <input id="dropzone-file" type="file" name="image" class="hidden" multiple />
+                  </label>
+                </div>
+              </div>
+    
+              <div class="bg-white shadow-xl border border-gray-300 p-4 rounded-lg pb-4">
+                <div class="grid grid-cols-2 gap-4">
+                  <div class="mb-4 w-full flex flex-col justify-center gap-2">
+                    <Label class="font-light text-lg">Preço (R$)</Label>
+                    <input
+                      class="w-full p-2 rounded outline-none border border-gray-300"
+                      name="price"
+                      type="number"
+                      placeholder="R$ 0,00"
+                    />
+                  </div>
+    
+                  <div class="mb-4 w-full flex flex-col justify-center gap-2">
+                    <Label class="font-light text-lg">Desconto (%)</Label>
+                    <input
+                      class="w-full p-2 rounded outline-none border border-gray-300"
+                      name="discountPorcent"
+                      type="number"
+                      placeholder="% 0,00"
+                    />
+                  </div>
+                </div>
+    
+                <div class="mb-4 w-full flex justify-end gap-2">
+                  <button
+                    class="bg-[#39DB4A] hover:bg-[#31C540] px-8 py-1 text-white rounded duration-300"
+                    type="submit"
+                  >
+                    Salvar
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
+
+<script src="/public/js/bundle.js"></script>
