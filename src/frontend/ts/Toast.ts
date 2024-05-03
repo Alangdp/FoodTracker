@@ -8,21 +8,19 @@ function createToastContainer() {
     container = document.createElement('div');
     container.id = 'toast-container';
     container.classList.add(
-      'w-fit',
-      'h-fit',
-      'bg-blue-500',
-      'shadow-lg',
       'grid',
-      'grid-cols-1',
-      'fixed',
+      'gap-2',
+      'w-32',
+      'p-4',
+      'space-y-4',
+      'rtl:space-x-reverse',
+      'fixed', 
       'top-0',
       'right-0',
-      'mr-4',
-      'mt-4',
-      'p-4',
-      'rounded',
-      'gap-2',
       'hidden',
+      'transition-opacity',
+      'duration-300',
+      'ease-in-out'
     );
 
     document.body.appendChild(container);
@@ -49,12 +47,12 @@ function random(length: number = 8): string {
   return result;
 }
 
-function showToast(message: string = ''): void {
-  createToast(message);
+function showToast(message: string = '', type?: 'SUCCESS' | 'ERROR'): void {
+  createToast(message, type);
   addTimerToCloseToast();
 }
 
-function createToast(message: string): void {
+function createToast(message: string, type?: 'SUCCESS' | 'ERROR'): void {
   if (!message) return;
   const container = document.getElementById('toast-container');
   const toastId = random(8);
@@ -62,30 +60,52 @@ function createToast(message: string): void {
   const newToast = document.createElement('div');
   newToast.id = toastId;
   newToast.classList.add(
-    'card',
-    'p-2',
+    'p-4',
+    'flex',
+    'items-center',
     'bg-white',
-    'overflow-hidden',
-    'text-ellipsis',
-    'whitespace-nowrap',
-    'rounded',
+    'rounded-lg',
+    'shadow',
+    'dark:bg-gray-800'
   );
-  newToast.innerText = message;
-  container!.appendChild(newToast);
 
+  const svgIcon = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+  svgIcon.classList.add('w-5', 'h-5');
+  svgIcon.style.fill = '#000';
+  svgIcon.setAttribute('aria-hidden', 'true');
+  svgIcon.setAttribute('viewBox', '0 0 18 20');
+
+  const pathIcon = document.createElementNS("http://www.w3.org/2000/svg", "path");
+  pathIcon.setAttribute('d', 'm9 17 8 2L9 1 1 19l8-2Zm0 0V9');
+
+  svgIcon.appendChild(pathIcon);
+
+  const messageDiv = document.createElement('div');
+  messageDiv.classList.add('ps-4', 'text-sm', 'font-normal', 'text-gray-500', 'dark:text-gray-400');
+  messageDiv.innerText = message;
+
+  newToast.appendChild(svgIcon);
+  newToast.appendChild(messageDiv);
+
+  container!.appendChild(newToast);
   activeToast.push(toastId);
 }
 
 function addTimerToCloseToast(): void {
   if (activeToast.length > 0) {
-    for (const toastId of activeToast) {
-      activeToast = activeToast.filter(id => id !== toastId);
-
+    activeToast.forEach((toastId, index) => {
       setTimeout(() => {
         const toast = document.getElementById(toastId);
-        toast!.remove();
-      }, 2000);
-    }
+        if (toast) {
+          toast.style.transition = "opacity 0.5s";
+          toast.style.opacity = "0";
+          setTimeout(() => {
+            toast.remove();
+          }, 500); 
+        }
+      }, 2000 * (index + 1)); 
+    });
+    activeToast = []; 
   }
 }
 

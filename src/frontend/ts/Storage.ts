@@ -1,4 +1,3 @@
-
 export default class LocalManager {
   private path: string;
   private actualValue: string;
@@ -23,3 +22,6 @@ export default class LocalManager {
     return localStorage.getItem(this.path);
   }
 }
+
+
+export const tokenManager = new LocalManager("token");

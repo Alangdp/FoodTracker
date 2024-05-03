@@ -1,42 +1,47 @@
 import { showToast } from "./Toast";
+import { tokenManager } from "./Storage";
+import { ResponseProps } from "../../types/Response.type";
+import axios from "axios";
 
-function validateLoginForm(): boolean {
-  const form = document.getElementById('form-register') as HTMLFormElement;
-  const email = (document.getElementById('email') as HTMLInputElement).value;
-  const password = (document.getElementById('password') as HTMLInputElement).value;
-
+function validateLoginForm(email: string, password: string) {
   const emailRegex: RegExp = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   const passwordRegex: RegExp = /^.{8,}$/;
-
   let valid: boolean = true;
-
   if (!emailRegex.test(email)) {
-    showToast('E-mail não é válido.');
+    showToast('E-mail não é válido.', "ERROR");
     valid = false;
   }
 
   if (!passwordRegex.test(password)) {
-    showToast('Senha deve ter no mínimo 8 caracteres.');
+    showToast('Senha deve ter no mínimo 8 caracteres.', "ERROR");
     valid = false;
-  }
-
-  if (valid) {
-    form.submit();
   }
 
   return valid;
 }
 
-try {
-  document.getElementById('submit-btn-login')!.addEventListener('click', function (event) {
-    event.preventDefault();
-  
-    if (validateLoginForm()) {
-      console.log('Formulário válido. Pronto para enviar.');
+function initializeFormLogin() {
+  const email = document.getElementById('email-input') as HTMLInputElement;
+  const password = document.getElementById('password-input') as HTMLInputElement;
+  const submitButton = document.getElementById("submit-btn-login");
+
+  submitButton?.addEventListener("click", async () => {
+    if(validateLoginForm(email.value, password.value)) {
+      const response = await axios.post("/v1/company/login", {
+        email: email.value, 
+        password: password.value
+      });
+    
+      const data: ResponseProps<{token: string}> = response.data; 
+      tokenManager.setToken(data.data?.token || "");
+      showToast("Login Concluido", "ERROR");
     }
   });
-} catch (error) {
-  console.log(error);
 }
 
-export { validateLoginForm };
+initializeFormLogin();
+
+
+
+
+

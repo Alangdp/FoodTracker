@@ -1,9 +1,5 @@
 import "./Toast";
+import "./Storage";
 import "./FormRegister";
 import "./FormLogin";
-import LocalManager from "./Storage";
-
-const tokenManager = new LocalManager("token");
-const userToken = tokenManager.readToken();
-
 import "./Files";

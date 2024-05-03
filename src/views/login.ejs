@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="/public/styles/toast.css">
   
 </head>
-<body class="overflow-x-hidden">
+<body class="">
   <%- include('./includes/navbar.ejs') %>
   <div class="relative w-screen h-screen flex justify-center items-center">
     <div class="absolute inset-0 bg-cover bg-center filter blur-sm" style="background-image: url('/public/images/restaurant.jpg')"></div>
@@ -24,19 +24,18 @@
           <!-- <input type="hidden"> -->
           <div class="mb-4">
             <label class="block text-gray-700 text-sm font-bold mb-2" for="name">Email:</label>
-            <input name="email" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="email" type="text" placeholder="Nome">
+            <input id="email-input" name="email" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="email" type="text" placeholder="Nome">
           </div>
           <div class="mb-4">
             <label class="block text-gray-700 text-sm font-bold mb-2" for="email">Senha:</label>
-            <input name="password" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="password" type="email" placeholder="E-mail">
+            <input id="password-input" name="password" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="password" type="email" placeholder="E-mail">
           </div>
-          <div class="flex items-center justify-center mb-8"> <!-- Adicionando margem inferior -->
+          <div class="flex items-center justify-center mb-8">
             <button id="submit-btn-login" class="bg-[#39DB4A] hover:bg-[#3dc053] duration-300 w-2/3 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">Venha Fazer Parte</button>
           </div>
         </form>
         
-        <!-- Adicionando o círculo abaixo do formulário -->
-        <div class="absolute bottom-0 left-3/2 transform -translate-x-1/2 mb-16"> <!-- Adicionando margem inferior -->
+        <div class="absolute bottom-0 left-3/2 transform -translate-x-1/2 mb-16">
           <div class="rounded-full w-[400px] h-[400px] bg-[#39DB4A]"></div>
         </div>
       </div>
@@ -51,4 +50,5 @@
 </body>
 </html>
 
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="/public/js/bundle.js"></script>

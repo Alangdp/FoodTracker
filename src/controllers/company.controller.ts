@@ -68,8 +68,9 @@ export const login: RequestHandler = async (req, res) => {
     const company = new Company({...companyProps});
     if(!company.login(password)) throw new Error("Invalid Email or Password");
     const token = createToken(company.id!);
-    return response(res, { status: 200, data: token });
+    return response(res, { status: 200, data: {token} });
   } catch (error) {
+    console.log(error);
     return errorResponse(res, error);
   }
 };

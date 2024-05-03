@@ -1,12 +1,9 @@
 import { showToast } from "./Toast";
+import { tokenManager } from "./Storage";
+import axios from "axios";
+import { ResponseProps } from "../../types/Response.type";
 
-function validateRegisterForm(): boolean {
-  const form = document.getElementById('form-register') as HTMLFormElement;
-  const name = (document.getElementById('name') as HTMLInputElement).value;
-  const email = (document.getElementById('email') as HTMLInputElement).value;
-  const phone = (document.getElementById('phone') as HTMLInputElement).value;
-  const password = (document.getElementById('password') as HTMLInputElement).value;
-
+function validateRegisterForm(name: string, email: string, phone: string, password: string): boolean {
   const nameRegex: RegExp = /^.{3,}$/;
   const emailRegex: RegExp = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   const phoneRegex: RegExp = /^[0-9]{10,11}$/;
@@ -34,23 +31,32 @@ function validateRegisterForm(): boolean {
     valid = false;
   }
 
-  if (valid) {
-    form.submit();
-  }
-
   return valid;
 }
 
-try {
-  document.getElementById('submit-btn-register')!.addEventListener('click', function (event) {
-    event.preventDefault();
+function initializeFormRegister() {
+  const submitButton = document.getElementById("submit-btn-register");
+  const name = document.getElementById('name-input') as HTMLInputElement;
+  const email = document.getElementById('email-input') as HTMLInputElement;
+  const phone = document.getElementById('phone-input') as HTMLInputElement;
+  const password = document.getElementById('password-input') as HTMLInputElement;
+
   
-    if (validateRegisterForm()) {
-      console.log('Formulário válido. Pronto para enviar.');
+  submitButton?.addEventListener("click", async (event) => {
+    if(validateRegisterForm(name.value, email.value, phone.value, password.value)) {
+      const response = await axios.post("/v1/company/", {
+        name: name.value,
+        email: email.value,
+        phone: phone.value,
+        password: password.value
+      });
+
+      const data: ResponseProps<{token: string}> = response.data; 
+      tokenManager.setToken(data.data?.token || "");
+      showToast("Registro concluído", "SUCCESS");
+      window.location.replace("/company");
     }
   });
-} catch (error) {
-  console.log(error);
 }
 
-export { validateRegisterForm };
+initializeFormRegister();
