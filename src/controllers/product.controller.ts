@@ -2,7 +2,7 @@ import { RequestHandler } from 'express';
 import { errorResponse, response } from '../utils/responses';
 import { ProductProps } from '../types/Product.type';
 import { createProduct, deleteProduct } from '../models/Product.model';
-import { deleteFile } from '../utils/images';
+import { imagesManager } from '../utils/images';
 
 export const store: RequestHandler = async (req, res) => {
   try {
@@ -22,7 +22,7 @@ export const store: RequestHandler = async (req, res) => {
     console.log(error);
     if(req.body.tempFiles.length > 0) {
       req.body.tempFiles.forEach((name: string) => {
-        deleteFile(name, true);
+        imagesManager.deleteTempFile(name);
       });
     }
 
@@ -43,10 +43,6 @@ export const pop: RequestHandler = async (req, res) => {
 
 export const put: RequestHandler = async (req, res) => {
   try {
-    // console.log(JSON.parse(req.body.body), 'ID');
-    // const tempFileNames: string[] | undefined = req.body.tempFiles;
-
-    console.log(req.body);
     return response(res, { status: 200, data: req.files });
   } catch (error) {
     console.log(error);

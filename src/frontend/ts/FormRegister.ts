@@ -42,7 +42,7 @@ function initializeFormRegister() {
   const password = document.getElementById('password-input') as HTMLInputElement;
 
   
-  submitButton?.addEventListener("click", async (event) => {
+  submitButton?.addEventListener("click", async () => {
     if(validateRegisterForm(name.value, email.value, phone.value, password.value)) {
       const response = await axios.post("/v1/company/", {
         name: name.value,

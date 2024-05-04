@@ -5,25 +5,49 @@ import path from "path";
 
 const __dirname = path.resolve();
 
-const tempFiles = path.resolve(__dirname, "temp", "images");
-const imagesPath = path.resolve(__dirname, "public", "images");
+type TempFilesProps = {
+  tempFolder: string[]
+  concreteFolder: string[]
+}
 
-export function deleteFile(fileName: string, temp: boolean) {
-  if(temp) 
-  fs.rmSync(`${tempFiles}/${fileName}`, {
-    force: true
-  });
+export class TempFiles {
+  private concreteFolder: string;
+  private tempFolder: string;
 
-  else 
-  fs.rmSync(`${imagesPath}/${fileName}`, {
-    force: true
-  });
+  /**
+   * @concretePath starts On __dirname/"public"
+   * @tempFiles starts On __dirname/"temp"
+   */
+  constructor({ concreteFolder , tempFolder }: TempFilesProps) {
+    this.concreteFolder = path.resolve(...[__dirname, "public"].concat(concreteFolder));
+    this.tempFolder = path.resolve(...[__dirname, "temp"].concat(tempFolder));
+
+    console.log(
+      this.concreteFolder,
+      this.tempFolder
+    );
+  }
+
+  deleteConcreteFile(fileName: string) {
+    fs.rmSync(`${this.concreteFolder}/${fileName}`, {
+      force: true
+    });
+  }
+
+  deleteTempFile(fileName: string) {
+    fs.rmSync(`${this.tempFolder}/${fileName}`, {
+      force: true
+    });
+  }
   
+  ToConcrete(tempName: string, newName: string) {
+    fs.rename(`${this.tempFolder}/${tempName}`, `${this.concreteFolder}/${newName}`, () => {});
+  }
 }
 
-export function moveTempToImage(tempName: string, newName: string) {
-  fs.rename(`${tempFiles}/${tempName}`, `${imagesPath}/${newName}`, () => {});
-}
+const imagesManager = new TempFiles({
+  concreteFolder: ['images'],
+  tempFolder: ['images']
+});
 
-
-
+export { imagesManager };

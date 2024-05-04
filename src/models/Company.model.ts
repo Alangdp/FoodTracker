@@ -1,8 +1,6 @@
 import bcrypt from "bcrypt";
 
 import { CompanyProps } from "../types/Company.type";
-import { User } from "./User.model";
-
 
 export default class Company implements CompanyProps {
   id?: string;
