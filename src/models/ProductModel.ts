@@ -3,24 +3,24 @@ import { ProductProps, ProductFilterSchema } from '../types/Product.type';
 import { Image } from './Image.model';
 
 export class Product implements ProductProps {
-  id?: string;
+  id: string;
   category: string;
   title: string;
-  description: string;
-  images: ImageProps[];
+  description: string | null;
   value: number;
   discountPercent: number;
-  companyId?: string;
+  companyId: string;
+  status: boolean;
 
-  constructor({ id, category, title, description, images, value, discountPercent, companyId }: ProductProps) {
-    ProductFilterSchema.parse({ id, category, title, description, images, value, discountPercent, companyId });
+  constructor({ id, category, title, description, value, discountPercent, companyId, status }: ProductProps) {
+    ProductFilterSchema.parse({ id, category, title, description, value, discountPercent, companyId, status });
     this.id = id;
     this.category = category;
     this.title = title;
     this.description = description;
-    this.images = images;
     this.value = value;
     this.discountPercent = discountPercent;
     this.companyId = companyId;
+    this.status = status;
   }
 }

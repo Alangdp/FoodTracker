@@ -46,10 +46,8 @@ model Product {
   category        String
   title           String
   description     String?
-  images          Image[] 
-  value           Decimal
-  discountPercent Decimal
-  
+  value           Float
+  discountPercent Float
   status Boolean @default(true)
   company Company? @relation(fields: [companyId], references: [id])
   companyId String
@@ -58,8 +56,7 @@ model Product {
 model Image {
   id              String      @id @default(uuid()) @unique
   imageUrl        String
-  product         Product[]    
-  productId       String   
+  productId       String    
   status Boolean @default(true)
   @@map(name: "images")     
 }
