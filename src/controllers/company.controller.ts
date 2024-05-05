@@ -75,4 +75,13 @@ export const login: RequestHandler = async (req, res) => {
   }
 };
 
+export const getCompany: RequestHandler = async (req, res) => {
+  try {
+    return response(res, { status: 200, data: {valid: true} });
+  } catch (error) {
+    console.log(error);
+    return errorResponse(res, error);
+  }
+};
+
 

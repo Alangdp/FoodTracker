@@ -10,6 +10,7 @@
     <script src="https://kit.fontawesome.com/10a6f28d4d.js" crossorigin="anonymous"></script>
 </head>
 <body>
+
   <div class="p-7 bg-[#DDDDE2] flex flex-col gap-y-5 h-screen w-full ">
     <div class=" h-fit w-full">
       <%- include('./includes/navbar.ejs') %>
@@ -20,10 +21,20 @@
         <div class="w-full h-full flex flex-col items-center justify-center bg-[#F1F1F1]">
           <div class="w-full h-full rounded bg-[#F1F1F1] px-16 py-2"> 
             <div
-              class="p-4 flex gap-4 items-center hover:opacity-60 duration-300 cursor-pointer"
+              class="p-4 w-full flex grow just"
             >
-              <i class="fa-solid fa-arrow-left"></i>
-              <h3 class="font-bold text-2xl">Produtos</h3>
+              <div class="flex w-full duration-300 justify-between">
+                <div class="flex gap-4 items-center hover:opacity-60 cursor-pointer">
+                  <i class="fa-solid fa-arrow-left"></i>
+                  <h3 class="font-bold text-2xl">Produtos</h3>
+                </div>
+                <div class="flex gap-4 items-center justify-center cursor-pointer">
+                  <div class="flex gap-2 items-center justify-center px-4 py-2 bg-[#39DB4A] hover:bg-[#39db498e] duration-300 text-white rounded-lg">
+                    <i class="fa fa-plus" aria-hidden="true"></i>
+                    <a href="/company/products/register" class="">Cadastrar Produto</a>
+                  </div>
+                </div>
+              </div>
             </div>
             <table class="w-full bg-white border rounded-lg shadow-md">
               <thead class="bg-gray-800 text-white">
@@ -35,35 +46,41 @@
                   <th class="w-2/7 px-4 py-2">Imagens</th>
                   <th class="w-1/7 px-4 py-2">Valor</th>
                   <th class="w-1/7 px-4 py-2">Desconto (%)</th>
+                  <th class="w-1/7 px-4 py-2">Valor Com desconto (R$)</th>
+                  <th class="w-1/7 px-4 py-2 w-fit"></th>
                 </tr>
               </thead>
               <tbody class="text-gray-700">
                 <% products.forEach(product => { %>
                   <tr>
                     <td class="border px-4 py-2"><%= product.id %></td>
-                    <td class="border px-4 py-2">Categoria A</td>
-                    <td class="border px-4 py-2">Produto A</td>
-                    <td class="border px-4 py-2">Descrição do Produto A</td>
-                    <td class="border px-4 py-2" rowspan="2">
-                      <div class="flex justify-between">
-                        <div class="w-1/2 px-2">
-                          <img src="imagem1.jpg" alt="Imagem 1" class="w-full">
-                        </div>
-                        <div class="w-1/2 px-2">
-                          <img src="imagem2.jpg" alt="Imagem 2" class="w-full">
-                        </div>
-                      </div>
-                      <div class="flex justify-between mt-2">
-                        <div class="w-1/2 px-2">
-                          <img src="imagem3.jpg" alt="Imagem 3" class="w-full">
-                        </div>
-                        <div class="w-1/2 px-2">
-                          <img src="imagem4.jpg" alt="Imagem 4" class="w-full">
-                        </div>
+                    <td class="border px-4 py-2"><%= product.category %></td>
+                    <td class="border px-4 py-2"><%= product.title %></td>
+                    <td class="border px-4 py-2"><%= product.description %></td>
+                    <td class="border px-4 py-2">
+                      <div class="grid grid-cols-2 grid-rows-2 justify-start gap-2">
+                          <% images[product.id].forEach((image, index) => { %>
+                            <% if (index < 4) { %>
+                              <div class="w-24 h-24 bg-cover bg-center bg-no-repeat rounded-lg" style="background-image: url('/public/images/<%= image.imageUrl %>')"></div>
+                            <% } %>
+                          <% }) %>
                       </div>
                     </td>
                     <td class="border px-4 py-2">R$<%= product.value %> </td>
                     <td class="border px-4 py-2"><%= product.discountPercent %>%</td>
+                    <td class="border px-4 py-2">R$<%= product.value - ( product.value * (product.discountPercent / 100)) %> </td>
+                    <td class="text-center align-middle h-full w-11 border border-gray-300">
+                      <div class="flex-col items-center justify-center h-full w-auto p-2">
+                        <a href="">
+                          <form action="">
+                            <input hidden name="productId" type="text" value="<%= product.id %>">
+                            <input hidden name="userToken" type="text" value=""
+                            <h4 class="hover:opacity-60 duration-300 cursor-pointer p-2 w-40 rounded-lg text-white bg-red-500 mb-4">Deletar</h4>
+                          </form>
+                        </a>
+                        <h4 class="hover:opacity-60 duration-300 cursor-pointer p-2 w-40 rounded-lg text-white bg-blue-500">Editar</h4>
+                      </div>
+                    </td>
                   </tr>
                 <% }) %>
               </tbody>
@@ -75,3 +92,7 @@
   </div>
 </body>
 </html>
+
+<script src="/public/js/bundle.js">
+  loginRequired();
+</script>
