@@ -1,14 +1,15 @@
 import { Router } from "express";
-import { destroy, index, put, store, login, getCompany } from "../controllers/company.controller";
-import { loginRequired } from "../middleware/tokenMiddleware";
+// import { destroy, index, put, store, login, getCompany } from "../controllers/company.controller";
+import { destroy, index, put, store, login, getCompany } from "../controllers/company.controller.session";
+// import { loginRequired } from "../middleware/tokenMiddleware";
 
 
 const router = Router();
 
 
 // Rest Routes
-router.get("/", loginRequired, index);
-router.post("/get/", loginRequired, getCompany);
+router.get("/", index);
+router.post("/get/", getCompany);
 
 router.post("/", store);
 router.put("/:companyId", put);

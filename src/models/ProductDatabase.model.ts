@@ -33,7 +33,6 @@ export class ProductDatabase extends Product{
       productId: productId
     }));
 
-    console.log(teste, product);
     const images = await ImageDabatase.saveImagesOnDB(teste);
 
     return(

@@ -23,7 +23,6 @@ export const store: RequestHandler = async (req, res) => {
     return response(res, { status: 200, data: product });
   } catch (error) {
     console.log(error);
-    console.log(req.body, 13213231123);
     if(req.body.tempFiles.length > 0) {
       req.body.tempFiles.forEach((name: string) => {
         imagesManager.deleteTempFile(name);

@@ -1,4 +1,4 @@
-import { showToast } from "./Toast";
+import { showToast, toastContainer, addMessage } from "./Toast";
 
 /* eslint-disable @typescript-eslint/no-unused-vars */
 const dropzoneFile = document.getElementById('dropzone-file');
@@ -27,7 +27,7 @@ function handleFileSelect(event: Event) {
     const file = files[i];
     const fileName = file.name;
     if (!isAllowedFileType(fileName)) {
-      showToast("Apenas arquivos PNG e JPG são permitidos.");
+      addMessage(toastContainer!, "Error" ,"Apenas arquivos PNG e JPG são permitidos.");
       continue;
     }
     

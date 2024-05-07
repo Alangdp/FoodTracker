@@ -1,0 +1,13 @@
+
+<% ["Success", "Warning", "Error", "Normal"].forEach(function(type) { %>
+  <% if (messages[type] && messages[type].length > 0) { %>
+    <div class="alert alert-<%= type.toLowerCase() %>">
+      <% messages[type].forEach(function(message) { %>
+        <h3><%= message %></h3>
+        <script>
+          addMessage(document.getElementById('toast-container'), '<%= type %>', '<%= message %>');
+        </script>
+      <% }); %>
+    </div>
+  <% } %>
+<% }); %>

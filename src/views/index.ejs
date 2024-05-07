@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>iFood</title>
+  <!-- Adicionando Tailwind CSS -->
+  <link rel="stylesheet" href="/public/styles/output.css">
+</head>
+<body class="bg-gray-100">
+
+  <%- include('./includes/navbar.ejs') %>
+
+  <div class="container mx-auto px-4 mt-5 h-fit w-screen">
+    <h2 class="text-center text-2xl font-semibold mb-8">Banners</h2>
+    <div class="grid grid-cols-2 grid-rows-1 gap-4 h-[300px]">
+      <img src="https://source.unsplash.com/random/900%C3%97701/?food" class="w-full h-[300px] object-cover rounded" alt="">
+      <img src="https://source.unsplash.com/random/900%C3%97702/?food" class="w-full h-[300px] object-cover rounded" alt="">
+    </div>
+
+    <h2 class="text-center text-2xl font-semibold mt-8 mb-8 ">Produtos</h2>
+    <div class="grid grid-cols-4 gap-8 w-full h-fit">
+      <div class="card w-full bg-white shadow-lg flex flex-col rounded h-fit">
+        <img class=" border border-gray-400 border-opacity-60 rounded h-1/2" src="https://source.unsplash.com/random/900%C3%97703/?food" class="object-cover w-full h-64" alt="">
+        <div class="p-4">
+          <h5 class="font-semibold"></h5>
+          <p class="mt-2">Preço:</p>
+          <p class="mt-2">Preço com desconto:</p>
+          <p class="mt-2">Tempo de entrega:</p>
+        </div>
+      </div>
+
+      <div class="card w-full bg-white shadow-lg flex flex-col rounded h-fit">
+        <img class=" border border-gray-400 border-opacity-60 rounded h-1/2" src="https://source.unsplash.com/random/900%C3%97704/?food" class="object-cover w-full h-64" alt="">
+        <div class="p-4">
+          <h5 class="font-semibold"></h5>
+          <p class="mt-2">Preço:</p>
+          <p class="mt-2">Preço com desconto:</p>
+          <p class="mt-2">Tempo de entrega:</p>
+        </div>
+      </div>
+
+      <div class="card w-full bg-white shadow-lg flex flex-col rounded h-fit">
+        <img class=" border border-gray-400 border-opacity-60 rounded h-1/2" src="https://source.unsplash.com/random/900%C3%97705/?food" class="object-cover w-full h-64" alt="">
+        <div class="p-4">
+          <h5 class="font-semibold"></h5>
+          <p class="mt-2">Preço:</p>
+          <p class="mt-2">Preço com desconto:</p>
+          <p class="mt-2">Tempo de entrega:</p>
+        </div>
+      </div>
+
+      <div class="card w-full bg-white shadow-lg flex flex-col rounded h-fit">
+        <img class=" border border-gray-400 border-opacity-60 rounded h-1/2" src="https://source.unsplash.com/random/900%C3%97706/?food" class="object-cover w-full h-64" alt="">
+        <div class="p-4">
+          <h5 class="font-semibold"></h5>
+          <p class="mt-2">Preço:</p>
+          <p class="mt-2">Preço com desconto:</p>
+          <p class="mt-2">Tempo de entrega:</p>
+        </div>
+      </div>
+    </div>
+
+    <h2 class="text-center text-2xl font-semibold mt-8 mb-8">Promoções</h2>
+    <div class="grid grid-cols-2 gap-8">
+      <img src="https://source.unsplash.com/random/900%C3%97707/?food"" class="rounded object-cover w-full h-64" alt="">
+      <img src="https://source.unsplash.com/random/900%C3%97708/?food"" class="rounded object-cover w-full h-64" alt="">
+    </div>
+  </div>
+
+  <footer class="footer mt-5 bg-gray-800 text-white">
+    <div class="container mx-auto px-4 py-8">
+      <p class="text-center">Footer</p>
+    </div>
+  </footer>
+
+</body>
+</html>

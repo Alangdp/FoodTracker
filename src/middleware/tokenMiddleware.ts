@@ -24,6 +24,17 @@ const createToken = (id: string): string => {
   return token;
 };
 
+const validateToken = async (token: string): Promise<TokenPayload | null> => {
+  const verifyOptions: VerifyOptions = { issuer: 'Middleware' };
+
+  try {
+    const decodedToken: TokenPayload = jwt.verify(token, SECRET_TOKEN, verifyOptions) as TokenPayload;
+    return decodedToken;
+  } catch (error) {
+    return null;
+  }
+};
+
 // Middleware para verificar o token de autenticação
 const loginRequired: RequestHandler = async (req, res, next) => {
   const authorization: string | undefined = req.headers.authorization as string | undefined;
@@ -44,4 +55,4 @@ const loginRequired: RequestHandler = async (req, res, next) => {
   }
 };
 
-export { loginRequired, createToken };
+export { loginRequired, createToken, validateToken };

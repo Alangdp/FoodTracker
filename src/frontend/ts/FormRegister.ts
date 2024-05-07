@@ -1,4 +1,4 @@
-import { showToast } from "./Toast";
+import { addMessage, toastContainer } from "./Toast";
 import { tokenManager } from "./Storage";
 import axios from "axios";
 import { ResponseProps } from "../../types/Response.type";
@@ -12,22 +12,22 @@ function validateRegisterForm(name: string, email: string, phone: string, passwo
   let valid: boolean = true;
 
   if (!nameRegex.test(name)) {
-    showToast('Nome deve ter no mínimo 3 caracteres.');
+    addMessage(toastContainer!, "Error", 'Nome deve ter no mínimo 3 caracteres.');
     valid = false;
   }
 
   if (!emailRegex.test(email)) {
-    showToast('E-mail não é válido.');
+    addMessage(toastContainer!, "Error", 'E-mail não é válido.');
     valid = false;
   }
 
   if (!phoneRegex.test(phone)) {
-    showToast('Telefone não é válido.');
+    addMessage(toastContainer!, "Error", 'Telefone não é válido.');
     valid = false;
   }
 
   if (!passwordRegex.test(password)) {
-    showToast('Senha deve ter no mínimo 8 caracteres.');
+    addMessage(toastContainer!, "Error", 'Senha deve ter no mínimo 8 caracteres.');
     valid = false;
   }
 
@@ -53,7 +53,7 @@ function initializeFormRegister() {
 
       const data: ResponseProps<{token: string}> = response.data; 
       tokenManager.setToken(data.data?.token || "");
-      showToast("Registro concluído", "SUCCESS");
+      addMessage(toastContainer!, "Success", "Registro concluído");
       window.location.replace("/company");
     }
   });

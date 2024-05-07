@@ -36,13 +36,13 @@
                 </div>
               </div>
             </div>
-            <table class="w-full bg-white border rounded-lg shadow-md">
+            <table class="w-full bg-white border rounded-lg shadow-md table-fixed">
               <thead class="bg-gray-800 text-white">
                 <tr>
                   <th class="w-1/7 px-4 py-2">ID</th>
                   <th class="w-1/7 px-4 py-2">Categoria</th>
                   <th class="w-1/7 px-4 py-2">Título</th>
-                  <th class="w-1/7 px-4 py-2">Descrição</th>
+                  <th class="w-1/7 px-4 py-2 w-40">Descrição</th>
                   <th class="w-2/7 px-4 py-2">Imagens</th>
                   <th class="w-1/7 px-4 py-2">Valor</th>
                   <th class="w-1/7 px-4 py-2">Desconto (%)</th>
@@ -52,33 +52,33 @@
               </thead>
               <tbody class="text-gray-700">
                 <% products.forEach(product => { %>
-                  <tr>
-                    <td class="border px-4 py-2"><%= product.id %></td>
-                    <td class="border px-4 py-2"><%= product.category %></td>
-                    <td class="border px-4 py-2"><%= product.title %></td>
-                    <td class="border px-4 py-2"><%= product.description %></td>
-                    <td class="border px-4 py-2">
-                      <div class="grid grid-cols-2 grid-rows-2 justify-start gap-2">
-                          <% images[product.id].forEach((image, index) => { %>
-                            <% if (index < 4) { %>
-                              <div class="w-24 h-24 bg-cover bg-center bg-no-repeat rounded-lg" style="background-image: url('/public/images/<%= image.imageUrl %>')"></div>
-                            <% } %>
-                          <% }) %>
+                  <tr class="group transition-all duration-300">
+                    <td class="border px-4 py-2 group-hover:bg-gray-300"><%= product.id %></td>
+                    <td class="border px-4 py-2 group-hover:bg-gray-300"><%= product.category %></td>
+                    <td class="border px-4 py-2 group-hover:bg-gray-300"><%= product.title %></td>
+                    <td class="border px-4 py-2 group-hover:bg-gray-300 text-ellipsis overflow-hidden whitespace-nowrap w-40"><%= product.description %></td>
+                    <td class="border px-4 py-2 group-hover:bg-gray-300">
+                      <div class="grid grid-cols-2 justify-start gap-4">
+                        <% images[product.id].forEach((image, index) => { %>
+                          <% if (index < 4) { %>
+                            <div class="group-hover:w-20 group-hover:h-20 w-12 h-12 bg-cover bg-center bg-no-repeat rounded-lg transition-all duration-300" style="background-image: url('/public/images/<%= image.imageUrl %>')"></div>
+                          <% } %>
+                        <% }) %>
                       </div>
                     </td>
-                    <td class="border px-4 py-2">R$<%= product.value %> </td>
-                    <td class="border px-4 py-2"><%= product.discountPercent %>%</td>
-                    <td class="border px-4 py-2">R$<%= product.value - ( product.value * (product.discountPercent / 100)) %> </td>
-                    <td class="text-center align-middle h-full w-11 border border-gray-300">
+                    <td class="border px-4 py-2 group-hover:bg-gray-300">R$<%= product.value %> </td>
+                    <td class="border px-4 py-2 group-hover:bg-gray-300"><%= product.discountPercent %>%</td>
+                    <td class="border px-4 py-2 group-hover:bg-gray-300">R$<%= product.value - ( product.value * (product.discountPercent / 100)) %> </td>
+                    <td class="group-hover:bg-gray-300 text-center align-middle h-full w-11 border border-gray-300">
                       <div class="flex-col items-center justify-center h-full w-auto p-2">
                         <a href="">
                           <form action="">
                             <input hidden name="productId" type="text" value="<%= product.id %>">
-                            <input hidden name="userToken" type="text" value=""
-                            <h4 class="hover:opacity-60 duration-300 cursor-pointer p-2 w-40 rounded-lg text-white bg-red-500 mb-4">Deletar</h4>
+                            <input hidden name="userToken" type="text" value="<%= company.id %>">
+                            <h4 class="hover:opacity-60 duration-300 cursor-pointer p-2 w-full rounded-lg text-white bg-red-500 mb-4">Deletar</h4>
                           </form>
                         </a>
-                        <h4 class="hover:opacity-60 duration-300 cursor-pointer p-2 w-40 rounded-lg text-white bg-blue-500">Editar</h4>
+                        <h4 class="hover:opacity-60 duration-300 cursor-pointer p-2 w-full rounded-lg text-white bg-blue-500">Editar</h4>
                       </div>
                     </td>
                   </tr>
@@ -96,3 +96,5 @@
 <script src="/public/js/bundle.js">
   loginRequired();
 </script>
+
+<%- include('./includes/toasts.ejs') %>

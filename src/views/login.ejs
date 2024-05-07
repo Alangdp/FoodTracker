@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="/public/styles/toast.css">
   
 </head>
-<body class="">
+<body class="overflow-hidden">
   <%- include('./includes/navbar.ejs') %>
   <div class="relative w-screen h-screen flex justify-center items-center">
     <div class="absolute inset-0 bg-cover bg-center filter blur-sm" style="background-image: url('/public/images/restaurant.jpg')"></div>
@@ -18,7 +18,7 @@
         Lorem Ipsum
       </div> 
       <div class="flex flex-col justify-center items-center col-span-2">
-        <form id="form-login" class="w-full max-w-sm bg-white p-8 rounded-[20px] shadow-lg relative z-10" style="box-shadow: 0px 24px 48px 0 rgba(0,0,0,0.16);" method="POST" action="/company">
+        <form id="form-login" class="w-full max-w-sm bg-white p-8 rounded-[20px] shadow-lg relative z-10" style="box-shadow: 0px 24px 48px 0 rgba(0,0,0,0.16);" method="POST" action="/v1/company/login">
           <h2 class="text-2xl font-bold mb-4">Login</h2>
           <!-- ? CSRF - Para implementar -->
           <!-- <input type="hidden"> -->
@@ -46,9 +46,8 @@
     <div class="card p-2 bg-white overflow-hidden text-ellipsis whitespace-nowrap rounded">
     </div>
   </div>
-
 </body>
 </html>
 
-<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="/public/js/bundle.js"></script>
+<%- include('./includes/toasts.ejs') %>

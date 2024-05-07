@@ -22,10 +22,6 @@ export class TempFiles {
     this.concreteFolder = path.resolve(...[__dirname, "public"].concat(concreteFolder));
     this.tempFolder = path.resolve(...[__dirname, "temp"].concat(tempFolder));
 
-    console.log(
-      this.concreteFolder,
-      this.tempFolder
-    );
   }
 
   deleteConcreteFile(fileName: string) {

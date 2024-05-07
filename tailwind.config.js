@@ -3,8 +3,8 @@ module.exports = {
   content: ["./src/**/*.{html,js,ejs}"],
   theme: {
     extend: {
-      backdropFilter: { // Usamos backdropFilter em vez de back-image-blur
-        'blur': 'blur(5px)', // Definimos o valor de desfoque desejado
+      backdropFilter: {
+        'blur': 'blur(5px)',
       }
     },
   },

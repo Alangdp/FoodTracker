@@ -18,8 +18,7 @@ export function errorResponse(res: Response, error: any) {
     const requestError = error;
 
     const errorMessage: string = requestError.meta?.cause as any;
-
-    if(errorMessage.trim() === "Record to delete does not exist.") {
+    if(errorMessage === "Record to delete does not exist. ") {
       return response(res, {
         errors: [addError("Invalid Id", null)],
         status: 400
