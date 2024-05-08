@@ -6,6 +6,7 @@ import { ImageProps } from '../types/Image.type';
 const prisma = new PrismaClient();
 
 export const home: RequestHandler = async (req, res) => {
+  console.log(req.session, 123123);
   return res.render('index.ejs');
 };
 

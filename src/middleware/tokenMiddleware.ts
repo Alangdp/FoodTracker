@@ -2,6 +2,7 @@ import jwt, { SignOptions, VerifyOptions } from 'jsonwebtoken';
 import dotenv from 'dotenv';
 import { RequestHandler } from 'express';
 import { addError, response } from '../utils/responses';
+import { Redirect } from '../utils/redirect';
 
 dotenv.config();
 
@@ -37,21 +38,22 @@ const validateToken = async (token: string): Promise<TokenPayload | null> => {
 
 // Middleware para verificar o token de autenticação
 const loginRequired: RequestHandler = async (req, res, next) => {
-  const authorization: string | undefined = req.headers.authorization as string | undefined;
+  const redirect = new Redirect({request: req, response: res});
+  const token: string | undefined = req.session.token;
 
-  if (!authorization) {
-    return response(res, { status: 401, errors: [addError("Token not found", {})] });
+  console.log(token, "MIDDLEWARE");
+
+  if (!token) {
+    return redirect.error("Login Obrigátorio", "/company/login");
   }
-
-  const [, token] = authorization.split(' ');
-
   const verifyOptions: VerifyOptions = { issuer: 'Midleware' };
   try {
     const decodedToken: TokenPayload = jwt.verify(token, SECRET_TOKEN, verifyOptions) as TokenPayload;
     req.body.id = decodedToken.id;
     next();
   } catch (error) {
-    return response(res, { status: 401, errors: [addError("Invalid Token", {})] });
+    req.flash("Error", "Login Required");
+    return res.redirect("/company/login");
   }
 };
 
